@@ -1,6 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const User = require("../S2_Schemas/postsSchema");
+const User = require("../S2_Schemas/userSchema");
 
 const router = express.Router();
 
@@ -15,8 +15,9 @@ const addUser = async (req, res) => {
       state: req.body.state,
       password: req.body.password,
     });
-    const createUser = newUser.save();
-    return res.send({
+    const createUser = await newUser.save();
+    console.log(JSON.stringify(createUser));
+    res.send({
       _id: createUser._id,
       name: createUser.name,
       email: createUser.email,
@@ -25,7 +26,7 @@ const addUser = async (req, res) => {
       password: user.password,
     });
   } catch (e) {
-    return res.send({ message: e.message });
+    res.send({ message: e.message });
   }
 };
 
