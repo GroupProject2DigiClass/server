@@ -43,6 +43,7 @@ const addItem = async (req, res) => {
       pid: req.body.pid,
       city: req.body.city,
       state: req.body.state,
+      images: req.body.images,
     });
     const createItem = await newItem.save();
     console.log(JSON.stringify(createItem));
@@ -55,6 +56,7 @@ const addItem = async (req, res) => {
       pid: createItem.pid,
       city: createItem.city,
       state: createItem.state,
+      images: createItem.images,
     });
   } catch (error) {
     res.send({ message: error.message });

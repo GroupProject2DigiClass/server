@@ -30,7 +30,7 @@ const ItemSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  images: [String],
+  images: String,
 });
 
 var Item = mongoose.model("Item", ItemSchema);
