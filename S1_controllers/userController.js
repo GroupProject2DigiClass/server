@@ -1,7 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const User = require("../S2_Schemas/userSchema");
-const Item = require("../S2_Schemas/itemSchema");
+const Item = require("../S2_Schemas/postsSchema");
 
 const router = express.Router();
 
