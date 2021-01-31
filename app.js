@@ -6,6 +6,7 @@ const express = require("express");
 const router = require("./S3_routes/posts");
 const dotenv = require("dotenv");
 const app = express();
+
 dotenv.config();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -13,13 +14,15 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 app.use("/users", router);
+app.use('/post', router);
+
 app.get("/", (req, res) => {
   res.send("Hello to memories API");
 });
 
 //const CONNECTION_URL = 'mongodb://localhost:27017/listdb';
 
-const PORT = process.env.PORT || 5003;
+const PORT = process.env.PORT || 5005;
 
 mongoose
   .connect(process.env.URL, {
