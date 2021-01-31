@@ -2,7 +2,7 @@ const express = require( 'express');
 const mongoose =require( 'mongoose');
 
 const PostMessage =require( '../S2_Schemas/searchSchema');
-const Item=require('../S2_Schemas/postsSchema');
+const Item=require('../S2_Schemas/itemSchema');
 const router = express.Router();
 
 
