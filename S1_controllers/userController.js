@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const User = require("../S2_Schemas/userSchema");
 const Item = require("../S2_Schemas/itemSchema");
+const Start = require("../S2_Schemas/startSchema");
 
 const router = express.Router();
 
@@ -62,4 +63,23 @@ const addItem = async (req, res) => {
     res.send({ message: error.message });
   }
 };
-module.exports = { router, addUser, addItem };
+
+const getUser = async (req, res) => {
+  try {
+    // const newStart = new Start({
+    //   userID: req.body.userID,
+    //   pass: req.body.pass,
+    // });
+    const { userID, pass } = req.body;
+    console.log(`login search ${userID} ${pass}`);
+    const data = await User.find({ email: userID });
+    console.log(data);
+    const password = data[0].password;
+
+    if (password === pass) res.send(data);
+    else res.send({ message: "invalid" });
+  } catch (error) {
+    res.send({ message: error.message });
+  }
+};
+module.exports = { router, addUser, addItem, getUser };
