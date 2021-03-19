@@ -24,6 +24,26 @@ console.log("hi from backend my password is 333444");
 }
 
 
+const registeruserok = async (req, res) => {
+  // const { state } = req.body;
+ console.log(req.body);
+ 
+ // const newPostMessage = new PostMessage({ state,city,tool })
+ 
+      
+   try {
+     // await newPostMessage.save();
+     const data= {wow:"okok"}
+     
+     
+      console.log("hi from backend my password is 333444");
+      
+       res.status(200).send(data);
+   } catch (error) {
+       res.status(409).json({ message: error.message });
+   }
+ }
 
 
-module.exports={findcityname};
+
+module.exports={findcityname,registeruserok};

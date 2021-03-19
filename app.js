@@ -20,12 +20,13 @@ app.get("/", (req, res) => {
   res.send("Hello to memories API");
 });
 
+const uri = "mongodb+srv://shoponline:Greendigital@cluster0.z6wbp.mongodb.net/dbname?retryWrites=true&w=majority";
 //const CONNECTION_URL = 'mongodb://localhost:27017/listdb';
 
 const PORT = process.env.PORT || 5005;
 
 mongoose
-  .connect(process.env.URL, {
+  .connect(uri, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
