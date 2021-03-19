@@ -2,10 +2,10 @@
   "name": "server",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "App.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": " nodemon app.js"
+    "start": " nodemon App.js"
   },
   "author": "",
   "license": "ISC",
@@ -15,7 +15,17 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "google-auth-library": "^6.1.6",
-    "mongoose": "^5.11.13"
+    "mongoose": "^5.11.13",
+    "react-scripts": "^4.0.3"
   },
-  "keywords": []
+  "keywords": [],
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Niket-iiitu/server-1.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Niket-iiitu/server-1/issues"
+  },
+  "homepage": "https://github.com/Niket-iiitu/server-1#readme"
 }

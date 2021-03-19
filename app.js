@@ -1,32 +1,27 @@
-//import  React from "react";
-//const bodyParser = require("body-parser");
+const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const express = require("express");
-const {router} = require("./S3_routes/posts");
 const dotenv = require("dotenv");
 const app = express();
+const router = require("./routes/rout");
 
 dotenv.config();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-//app.use(bodyParser.json());
-//app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
- 
-app.use('/post', router); 
+app.use("/makeclass", router);
 
 app.get("/", (req, res) => {
-  res.send("Hello to memories API");
+  res.send("Hello to Kamal API");
 });
-
-const uri = "mongodb+srv://shoponline:Greendigital@cluster0.z6wbp.mongodb.net/dbname?retryWrites=true&w=majority";
-//const CONNECTION_URL = 'mongodb://localhost:27017/listdb';
 
 const PORT = process.env.PORT || 5005;
 
 mongoose
-  .connect(uri, {
+  .connect(process.env.URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,

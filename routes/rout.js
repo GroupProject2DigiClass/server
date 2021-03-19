@@ -1,9 +1,13 @@
 const express = require("express");
-
-const {} = require("../controllers/classController");
-
+const { auth } = require("../middleware/auth");
 const router = express.Router();
 
-//Routs
+const {
+  makenewclassroom,
+  infoaboutclassroom,
+} = require("../controllers/classController.js");
+
+router.post("/", makenewclassroom);
+router.post("/info", infoaboutclassroom);
 
 module.exports = router;
