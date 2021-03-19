@@ -12,7 +12,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
-app.use("/data", router);
+app.use("/makeclass", router);
 
 app.get("/", (req, res) => {
   res.send("Hello to Kamal API");
