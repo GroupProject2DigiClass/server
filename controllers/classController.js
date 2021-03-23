@@ -4,33 +4,37 @@ const router = express.Router();
 const Class = require("../schema/classSchema/classSchema");
 
 const makenewclassroom = async (req, res) => {
+  console.log(req.body);
   const {
-    subject_code,
-    teacher,
-    subject_name,
-    subject_type,
-    head_background_color,
-    head_text_color,
-    body_background_color,
-    body_block_color,
+    classKey,
+    headBackgroundColor,
+    headTextColor,
+    bodyBackgroundColor,
+    bodyBlockColor,
+    subjectCode,
+    subjectName,
+    subjectType,
+    studentsAllowed,
+    subjectTeacher,
   } = req.body;
-  //console.log(req.body);
 
   const newPostMessage = new Class({
-    subject_code,
-    teacher,
-    subject_name,
-    subject_type,
-    head_background_color,
-    head_text_color,
-    body_background_color,
-    body_block_color,
+    classKey,
+    headBackgroundColor,
+    headTextColor,
+    bodyBackgroundColor,
+    bodyBlockColor,
+    subjectCode,
+    subjectName,
+    subjectType,
+    studentsAllowed,
+    subjectTeacher,
   });
 
   try {
     await newPostMessage.save();
-    const data = { wow: "data saved successfully" };
-
+    const data = { wow: "New Class Added Successfully" };
+    console.log(data);
     res.status(200).send(data);
   } catch (error) {
     res.status(409).json({ message: error.message });
@@ -42,7 +46,7 @@ const infoaboutclassroom = async (req, res) => {
   console.log(req.body);
 
   try {
-    const findResult = await Class.find({ subject_code: code });
+    const findResult = await Class.find({ subjectCode: code });
 
     res.status(200).send(findResult);
   } catch (error) {
