@@ -1,40 +1,49 @@
 const mongoose = require("mongoose");
 
 const ClassSchema = mongoose.Schema({
-  subject_code: {
+  classKey: {
     type: String,
     required: true,
     trim: true,
-    minLength: 5,
+    minLength: 3,
     unique: true,
   },
-  teacher: {
+  subjectCode: {
+    type: String,
+    required: true,
+    trim: true,
+    minLength: 3,
+  },
+  subjectTeacher: {
     type: [String],
     required: true,
-    minLength: 4,
   },
-  subject_name: {
+  studentAllowed: {
+    type: [String],
+    required: true,
+  },
+  subjectName: {
     type: String,
     required: true,
     trim: true,
   },
-  subject_type: {
+  subjectType: {
     type: String,
     required: true,
   },
-  head_background_color: {
+  headBackgroundColor: {
     type: String,
     required: true,
   },
-  head_text_color: {
+  headTextColor: {
     type: String,
     required: true,
   },
-  body_background_color: {
+  bodyBackgroundColor: {
     type: String,
     required: true,
   },
-  body_block_color: {
+  bodyBlockColor: {
     type: String,
     required: true,
   },
