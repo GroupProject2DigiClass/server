@@ -2,19 +2,43 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const express = require("express");
-const router = require("./S3_routes/posts");
+const router = require("./routes/assignmentRout");
 const dotenv = require("dotenv");
 const app = express();
+const path = require("path");
+
+const classRouter = require("./routes/classRout");
+const lectureRouter = require("./routes/lectureRout");
+const chatRouter = require("./routes/chatRout");
+const assignmentRouter = require("./routes/assignmentRout");
+
+//for file upload
+const multer = require("multer");
+const GridFsStorage = require("multer-gridfs-storage");
+const Grid= require("gridfs-stream");
+const methodOverride = require("gridfs-stream");
+const crypto = require('crypto');//for name change for file
+//to be done later on
 
 dotenv.config();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cors());
-app.use("/makeclass", router);
+//app.use(bodyParser.json());
+//app.use(bodyParser.urlencoded({ extended: true }));
 
-app.get("/", (req, res) => {
+
+app.use(cors());
+
+
+
+app.use("/makeclass", classRouter);
+app.use("/makelecture", lectureRouter);
+app.use("/makechat", chatRouter);
+
+app.use("/makeassignment", assignmentRouter);
+
+app.post("/", (req, res) => {
+  console.log(req);
   res.send("Hello to Kamal API");
 });
 
@@ -34,3 +58,5 @@ mongoose
   .catch((error) => console.log(error.message));
 
 mongoose.set("useFindAndModify", false);
+
+
