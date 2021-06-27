@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const AssignCompletedSchema = mongoose.Schema({
+const CompletedSchema = mongoose.Schema({
   assignmentKey: {
     type: String,
     required: true,
@@ -18,9 +18,12 @@ const AssignCompletedSchema = mongoose.Schema({
     type: [String],
     required: true,
   },
-  
+  bookmark: {
+    type: [String],
+    required: true,
+  },
 });
 
-var AssiCompleted = mongoose.model("AssignCompleted", AssignCompletedSchema);
+var Completed = mongoose.model("Completed", CompletedSchema);
 
-module.exports = AssiCompleted;
+module.exports = Completed;

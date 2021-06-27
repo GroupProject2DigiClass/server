@@ -61,8 +61,28 @@ const getSubjectassignment = async (req, res) => {
 };
 
 
+//get particular assignments of particular subject
+
+const getIndividualSubjectassignment = async (req, res) => {
+  var data = req.body;
+  
+  console.log(data._id);
+  
+
+  try {
+    const findResult = await postAssignment.find({ _id: data._id });
+    res.status(200).send(findResult);
+    console.log(findResult);
+  }
+  
+  catch (error) {
+    res.status(409).json({ message: error.message });
+  }
+
+};
+
 //completed assignment marker
 
 
 
-module.exports = { postnewassignment,getSubjectassignment };
+module.exports = { postnewassignment,getSubjectassignment,getIndividualSubjectassignment };

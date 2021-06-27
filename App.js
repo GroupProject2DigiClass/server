@@ -2,11 +2,15 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const express = require("express");
-const router = require("./routes/rout");
+const router = require("./routes/assignmentRout");
 const dotenv = require("dotenv");
 const app = express();
 const path = require("path");
 
+const classRouter = require("./routes/classRout");
+const lectureRouter = require("./routes/lectureRout");
+const chatRouter = require("./routes/chatRout");
+const assignmentRouter = require("./routes/assignmentRout");
 
 //for file upload
 const multer = require("multer");
@@ -26,7 +30,12 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
 
-app.use("/makeclass", router);
+
+app.use("/makeclass", classRouter);
+app.use("/makelecture", lectureRouter);
+app.use("/makechat", chatRouter);
+
+app.use("/makeassignment", assignmentRouter);
 
 app.post("/", (req, res) => {
   console.log(req);
