@@ -122,16 +122,19 @@ const getGivenLecture = async (req, res) => {
 const setCompletedLecture = async (req, res) => {
   console.log(req.body);
   try {
-    const { _id, rollNo } = req.body;
-    const presentStatus = await Completed.find({ _id: _id });
+    const { assignmentKey, rollNo } = req.body;
+    const presentStatus = await Completed.find({
+      assignmentKey: assignmentKey,
+    });
+    console.log(presentStatus[0]);
     if (presentStatus[0].completed.some((e) => e === rollNo))
       res.status(200).send({ message: "Roll no already present." });
     else {
       var arr = presentStatus[0].completed;
-      var assignmentKey = presentStatus[0].assignmentKey;
+      var AssignmentKey = presentStatus[0].assignmentKey;
       arr.push(rollNo);
       await Completed.findOneAndUpdate(
-        _id,
+        { assignmentKey: assignmentKey },
         { completed: arr },
         function (error, docs) {
           if (error)
@@ -145,7 +148,7 @@ const setCompletedLecture = async (req, res) => {
         }
       );
       await Lecture.updateOne(
-        { assignmentKey: assignmentKey },
+        { assignmentKey: AssignmentKey },
         { $set: { completed: arr.length } }
       ).then(() => {
         res.status(200).send("Done");
@@ -159,15 +162,32 @@ const setCompletedLecture = async (req, res) => {
 const setBookmarkLecture = async (req, res) => {
   console.log(req.body);
   try {
-    const { _id, rollNo } = req.body;
-    const presentStatus = await Completed.find({ _id: _id });
-    if (presentStatus[0].bookmark.some((e) => e === rollNo))
-      res.status(200).send({ message: "Roll no already present." });
-    else {
+    const { assignmentKey, rollNo } = req.body;
+    const presentStatus = await Completed.find({
+      assignmentKey: assignmentKey,
+    });
+    if (presentStatus[0].bookmark.some((e) => e === rollNo)) {
+      var arr = presentStatus[0].bookmark;
+      var filtered = arr.filter(function (value, index, arr) {
+        return value != rollNo;
+      });
+      console.log(filtered);
+      await Completed.findOneAndUpdate(
+        { assignmentKey: assignmentKey },
+        { bookmark: filtered },
+        function (error, docs) {
+          if (error) res.status(409).json({ message: error.message });
+          else {
+            res.status(200).send("Unmarked");
+          }
+        }
+      );
+    } else {
       var arr = presentStatus[0].bookmark;
       arr.push(rollNo);
+      console.log(arr);
       await Completed.findOneAndUpdate(
-        _id,
+        { assignmentKey: assignmentKey },
         { bookmark: arr },
         function (error, docs) {
           if (error) res.status(409).json({ message: error.message });
