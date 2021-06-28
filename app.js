@@ -1,4 +1,3 @@
-//ohoooooooooooooooooooooooooooooooooooooooooo this is useless 
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const cors = require("cors");
@@ -8,6 +7,8 @@ const app = express();
 const classRouter = require("./routes/classRout");
 const lectureRouter = require("./routes/lectureRout");
 const chatRouter = require("./routes/chatRout");
+const assignmentRouter = require("./routes/assignmentRout");
+const practiceRouter = require("./routes/practiceRout");
 
 dotenv.config();
 app.use(express.json());
@@ -18,6 +19,8 @@ app.use(cors());
 app.use("/makeclass", classRouter);
 app.use("/makelecture", lectureRouter);
 app.use("/makechat", chatRouter);
+app.use("/makeassignment", assignmentRouter);
+app.use("/makepractice", practiceRouter);
 app.get("/", (req, res) => {
   res.send("Hello to Kamal API");
 });
