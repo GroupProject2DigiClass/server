@@ -23,7 +23,10 @@ const crypto = require('crypto');//for name change for file
 dotenv.config();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-//app.use(bodyParser.json());
+app.use(bodyParser.json());//1
+app.use(methodOverride('_method'));
+//app.set('view engine', 'ejs');
+
 //app.use(bodyParser.urlencoded({ extended: true }));
 
 
