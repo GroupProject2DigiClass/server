@@ -48,26 +48,17 @@ const infoAboutClassroom = async (req, res) => {
     const findResult = await Class.find({ subjectCode: code });
 
     res.status(200).send(findResult);
-  } 
-  catch (error) {
+  } catch (error) {
     res.status(409).json({ message: error.message });
   }
 };
 
-//post new assignment 
+//post new assignment
 
 const postnewassignment = async (req, res) => {
   console.log(req.body);
-  const {
-    classKey,
-    title,
-    instruction,
-    points,
-    dueDate,
-    dueTime,
-    driveLink,
-    
-  } = req.body;
+  const { classKey, title, instruction, points, dueDate, dueTime, driveLink } =
+    req.body;
 
   const newPostMessage = new postAssignment({
     classKey,
