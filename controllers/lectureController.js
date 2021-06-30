@@ -1,4 +1,3 @@
-const express = require("express");
 const Lecture = require("../schema/lectureSchema/lectureSchema");
 const Completed = require("../schema/lectureSchema/completeSchema");
 
