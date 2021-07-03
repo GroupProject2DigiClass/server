@@ -20,7 +20,7 @@ app.use("/makeclass", classRouter);
 app.use("/makelecture", lectureRouter);
 app.use("/makechat", chatRouter);
 app.use("/makeassignment", assignmentRouter);
-app.use("/makepractice", practiceRouter);
+
 app.get("/", (req, res) => {
   res.send("Hello to Kamal API");
 });

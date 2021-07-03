@@ -1,5 +1,7 @@
 const express = require("express");
 const { auth } = require("../middleware/auth");
+const {studentauth } = require("../middleware/studentauth");
+const {teacherauth } = require("../middleware/teacherauth");
 const router = express.Router();
 const mongoose = require("mongoose");
 
@@ -7,12 +9,14 @@ const mongoose = require("mongoose");
 const{ 
   postnewassignment,
   getSubjectassignment,
-  getIndividualSubjectassignment
+  getIndividualSubjectassignment,
+  deleteAssignment
 } = require("../controllers/assignmentController.js");
 
 
 
-router.post("/postnewassignment", postnewassignment);
-router.post("/getSubjectassignment", getSubjectassignment);
+router.post("/postnewassignment",teacherauth, postnewassignment);
+router.post("/getSubjectassignment",studentauth, getSubjectassignment);
 router.post("/getIndividualSubjectassignment", getIndividualSubjectassignment);
+router.post("/deleteAssignment",teacherauth, deleteAssignment);
 module.exports = router;
