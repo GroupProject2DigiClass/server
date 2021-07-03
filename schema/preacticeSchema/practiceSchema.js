@@ -34,6 +34,15 @@ const PracticeSchema = mongoose.Schema({
   files: {
     type: [Object],
   },
+  instruction: {
+    type: String,
+    required: false,
+    
+  },
+  driveLink: {
+    type: String,
+    required: true,
+  }
 });
 
 var Practice = mongoose.model("Practice", PracticeSchema);

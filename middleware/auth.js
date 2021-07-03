@@ -15,8 +15,9 @@ const auth = async (req, res, next) => {
     console.log(payload);
     const { sub, email, name, picture } = payload;
     const userId = sub;
-    req.userId = payload?.sub;
+    req.userId = payload?.email;
 
+    
     next();
   } catch (error) {
     console.log(error);

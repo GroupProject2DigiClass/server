@@ -32,7 +32,7 @@ const postnewassignment = async (req, res) => {
 
   try {
     await newPostMessage.save();
-    const data = { wow: "New Assignment is posted Successfully" };
+    const data = "New Assignment is posted Successfully" ;
     console.log(data);
     res.status(200).send(data);
   } catch (error) {
@@ -85,4 +85,25 @@ const getIndividualSubjectassignment = async (req, res) => {
 
 
 
-module.exports = { postnewassignment,getSubjectassignment,getIndividualSubjectassignment };
+
+//deelte particular class assignment
+
+const deleteAssignment = async (req, res) => {
+  var data = req.body;
+  
+  console.log(data._id);
+  
+
+  try {
+    const findResult = await postAssignment.deleteOne({ _id: data._id });
+    res.status(200).send("Assignment deleted successfully");
+    console.log(findResult);
+  }
+  
+  catch (error) {
+    res.status(409).json({ message: error.message });
+  }
+
+};
+
+module.exports = { postnewassignment,getSubjectassignment,getIndividualSubjectassignment,deleteAssignment };

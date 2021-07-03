@@ -11,8 +11,9 @@ const getAllPractice = async (req, res) => {
       finalResult.push({
         assignmentKey: result[i].assignmentKey,
         unit: result[i].unit,
-        unitN: result[i].unitN,
+        unitN: parseInt(result[i].unit),
         title: result[i].title,
+        
       });
     }
     console.log(finalResult);
@@ -24,21 +25,24 @@ const getAllPractice = async (req, res) => {
 
 const makeNewPractice = async (req, res) => {
   console.log(req.body);
-  const { classKey, assignmentKey, title, unitN, unit, files } = req.body;
+  const {classKey, assignmentKey, title, unitN, unit, files,instruction,driveLink } = req.body;
 
   const newPractice = new Practice({
-    classKey,
+   classKey,
     assignmentKey,
     title,
     unitN,
     unit,
     files,
+    instruction,
+    driveLink,
   });
 
   try {
     await newPractice.save();
-    const data = { message: "New Practice Added Successfully" };
+    const data = "New Practice Added Successfully" ;
     res.status(200).send(data);
+  
   } catch (error) {
     res.status(409).json({ message: error.message });
   }

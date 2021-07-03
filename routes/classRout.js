@@ -1,5 +1,6 @@
 const express = require("express");
 const { auth } = require("../middleware/auth");
+const { teacherauth } = require("../middleware/teacherauth");
 const classRouter = express.Router();
 
 const {
@@ -9,9 +10,9 @@ const {
   getAllClassroom,
 } = require("../controllers/classController.js");
 
-classRouter.post("/", makeNewClassroom);
-classRouter.post("/info", infoAboutClassroom);
-classRouter.patch("/edit", editClassroom);
-classRouter.post("/getAll", getAllClassroom);
+classRouter.post("/",teacherauth, makeNewClassroom);
+classRouter.post("/info",auth, infoAboutClassroom);
+classRouter.patch("/edit",teacherauth, editClassroom);
+classRouter.post("/getAll",auth, getAllClassroom);
 
 module.exports = classRouter;
