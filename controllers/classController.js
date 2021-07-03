@@ -5,7 +5,7 @@ const Class = require("../schema/classSchema/classSchema");
 
 const makeNewClassroom = async (req, res) => {
   console.log(req.body);
-  const {
+  var {
     classKey,
     headBackgroundColor,
     headTextColor,
@@ -14,10 +14,18 @@ const makeNewClassroom = async (req, res) => {
     subjectCode,
     subjectName,
     subjectType,
-    studentsAllowed,
+    studentAllowed,
     subjectTeacher,
   } = req.body;
 
+//make the students and teacher aarays unique
+
+function onlyUnique(value, index, self) {
+  return self.indexOf(value) === index;
+}
+
+var studentAllowed1=studentAllowed.filter(onlyUnique); 
+studentAllowed=studentAllowed1;
   const newClass = new Class({
     classKey,
     headBackgroundColor,
@@ -27,14 +35,17 @@ const makeNewClassroom = async (req, res) => {
     subjectCode,
     subjectName,
     subjectType,
-    studentsAllowed,
+    studentAllowed,
     subjectTeacher,
   });
+console.log("--------------------------");
+console.log(newClass);
+
 
   try {
     await newClass.save();
     const data = { message: "New Class Added Successfully" };
-    res.status(200).send(data);
+    res.status(200).send("New Class Added Successfully");
   } catch (error) {
     res.status(409).json({ message: error.message });
   }
@@ -81,8 +92,11 @@ const postnewassignment = async (req, res) => {
 };
 
 const getAllClassroom = async (req, res) => {
+ // console.log(req.userId);
+  
+
   try {
-    const findResult = await Class.find();
+    const findResult = await Class.find({studentAllowed:req.userId});
     res.status(200).send(findResult);
   } catch (error) {
     res.status(409).json({ message: error.message });

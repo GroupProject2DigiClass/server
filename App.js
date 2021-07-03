@@ -19,11 +19,15 @@ const Grid= require("gridfs-stream");
 const methodOverride = require("gridfs-stream");
 const crypto = require('crypto');//for name change for file
 //to be done later on
+const practiceRouter = require("./routes/practiceRout");
 
 dotenv.config();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-//app.use(bodyParser.json());
+//app.use(bodyParser.json());//1
+//app.use(methodOverride('_method'));
+//app.set('view engine', 'ejs');
+
 //app.use(bodyParser.urlencoded({ extended: true }));
 
 
@@ -36,7 +40,7 @@ app.use("/makelecture", lectureRouter);
 app.use("/makechat", chatRouter);
 
 app.use("/makeassignment", assignmentRouter);
-
+app.use("/makepractice", practiceRouter);
 app.post("/", (req, res) => {
   console.log(req);
   res.send("Hello to Kamal API");

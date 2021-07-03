@@ -22,9 +22,10 @@ app.use(fileUpload());
 app.use("/makeclass", classRouter);
 app.use("/makelecture", lectureRouter);
 app.use("/makechat", chatRouter);
-app.use("/makeassignment", assignmentRouter);
+app.use("/makeassignment", assignmentRoute;
 app.use("/makepractice", practiceRouter);
 app.use("/files", fileRouter);
+
 app.get("/", (req, res) => {
   res.send("Hello to Kamal API");
 });
