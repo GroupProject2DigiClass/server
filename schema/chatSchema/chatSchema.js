@@ -27,6 +27,11 @@ const ChatSchema = mongoose.Schema({
     required: true,
     trim: false,
   },
+  email: {
+    type: String,
+    required: true,
+    trim: false,
+  },
 });
 
 var Chat = mongoose.model("Chat", ChatSchema);
