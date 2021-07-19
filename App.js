@@ -12,6 +12,8 @@ const lectureRouter = require("./routes/lectureRout");
 const chatRouter = require("./routes/chatRout");
 const assignmentRouter = require("./routes/assignmentRout");
 
+
+
 //for file upload
 const multer = require("multer");
 const GridFsStorage = require("multer-gridfs-storage");
@@ -36,7 +38,7 @@ app.use(cors());
 
 
 app.use("/makeclass", classRouter);
-app.use("/makelecture", lectureRouter);
+app.use("/makelecture",lectureRouter);
 app.use("/makechat", chatRouter);
 
 app.use("/makeassignment", assignmentRouter);
