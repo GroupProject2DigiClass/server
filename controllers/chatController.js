@@ -2,7 +2,7 @@ const express = require("express");
 const Chat = require("../schema/chatSchema/chatSchema");
 
 const getAllChat = async (req, res) => {
-  console.log(req.body);
+ // console.log(req.body);
   try {
     const { classKey, rollNo } = req.body;
     const result = await Chat.find({ classKey: classKey });
@@ -17,8 +17,8 @@ const getAllChat = async (req, res) => {
         });
       }
     } else {
-      console.log("--------------------------");
-      console.log(rollNo);
+     // console.log("--------------------------");
+     // console.log(rollNo);
       
       for (var i = 0; i < result.length; i++) {
         if (result[i].anonymous) {
@@ -38,8 +38,8 @@ const getAllChat = async (req, res) => {
         }
       }
     }
-    console.log("--------------------------executed--------------------");
-    console.log(finalResult);
+    //console.log("--------------------------executed--------------------");
+    //console.log(finalResult);
     
     res.status(200).send(finalResult);
   } catch (error) {
@@ -52,7 +52,7 @@ const sendChat = async (req, res) => {
   
   req.body.sender=req.sender;
   req.body.email=req.userId;
-  console.log(req.body);
+ // console.log(req.body);
   const newChat = new Chat(req.body);
 
   try {
