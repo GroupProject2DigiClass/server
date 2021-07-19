@@ -58,6 +58,7 @@ const infoAboutClassroom = async (req, res) => {
   try {
     const findResult = await Class.find({ subjectCode: code });
 
+
     res.status(200).send(findResult);
   } catch (error) {
     res.status(409).json({ message: error.message });
@@ -96,8 +97,11 @@ const getAllClassroom = async (req, res) => {
   
 
   try {
+    
     const findResult = await Class.find({studentAllowed:req.userId});
     res.status(200).send(findResult);
+    
+    
   } catch (error) {
     res.status(409).json({ message: error.message });
   }

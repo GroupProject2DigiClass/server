@@ -30,6 +30,10 @@ const postassignmentSchema = mongoose.Schema({
     type: String,
     required: false,
   },
+  files:{
+    type: Array,
+    unique: true,
+  },
   
 });
 

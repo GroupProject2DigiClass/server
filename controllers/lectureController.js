@@ -159,6 +159,8 @@ const setCompletedLecture = async (req, res) => {
 };
 
 const setBookmarkLecture = async (req, res) => {
+  console.log("--------------------------cotroller-------------------");
+  
   console.log(req.body);
   try {
     const { assignmentKey, rollNo } = req.body;

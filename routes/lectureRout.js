@@ -1,6 +1,8 @@
 const express = require("express");
 const { auth } = require("../middleware/auth");
 const lectureRouter = express.Router();
+const {sectureauth}= require("../middleware/lectureAuth");
+const {teacherauth}= require("../middleware/teacherauth");
 
 const {
   makeNewLecture,
@@ -13,13 +15,13 @@ const {
   deleteLecture,
 } = require("../controllers/lectureController.js");
 
-lectureRouter.post("/", makeNewLecture);
-lectureRouter.post("/getAll", getAllLectures);
+lectureRouter.post("/",teacherauth, makeNewLecture);
+lectureRouter.post("/getAll",sectureauth, getAllLectures);
 lectureRouter.post("/getLecture", getGivenLecture);
-lectureRouter.post("/setCompleted", setCompletedLecture);
-lectureRouter.post("/setBookmarked", setBookmarkLecture);
-lectureRouter.post("/getStatus", getStatus);
-lectureRouter.post("/delete", deleteLecture);
+lectureRouter.post("/setCompleted",sectureauth, setCompletedLecture);
+lectureRouter.post("/setBookmarked",sectureauth, setBookmarkLecture);
+lectureRouter.post("/getStatus",sectureauth, getStatus);
+lectureRouter.post("/delete",sectureauth, deleteLecture);
 // lectureRouter.post("/editLecture", editLecture);
 // lectureRouter.post("/setStatus", setStatus);
 

@@ -30,7 +30,8 @@ const studentauth = async (req, res, next) => {
         const findResult = await Class.find({ studentAllowed: req.userId, classKey: req.body.classKey });
         console.log(findResult);
         console.log("student found in that class or not");
-        var match = findResult[0].studentAllowed.find(function (element) {
+        var match ="tea";
+        match= findResult[0].studentAllowed.find(function (element) {
             
             return element == req.userId;
         })
